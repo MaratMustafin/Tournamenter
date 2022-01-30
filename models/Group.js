@@ -18,6 +18,10 @@ module.exports = {
 			type: 'string',
 			defaultsTo: '[New Group]',
 		},
+        arbiter: {
+            type: 'string',
+            defaultsTo: '[New Arbiter]',
+        },
 
 		// Calculate table scores
        /*
