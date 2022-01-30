@@ -65,7 +65,8 @@
 		</div>
 
 		<h3 class="panel-title">
-			<span class="group-name" data-title="Group Name"></span>
+			<span style="color:rgb(126, 126, 126);">Group name:</span><span style="margin-right:10px" class="group-name" data-title="Group Name"></span>
+			<span style="color:rgb(126, 126, 126);">Arbiter:</span><span class="group-arbiter" data-title="Group Arbiter"></span>
 		</h3>
 	</div>
 
@@ -366,11 +367,18 @@ function GroupViewController(groupController, onBuild){
 	self.makeGroupContainer = function(){
 		// Copy template
 		var $template = $('#template-group-view').clone();
-
+		console.log("CHECK THIS:",self.controller.data);
 		// Make it visible and remove id
 		$template.removeClass('hide');
 		$template.removeAttr('id');
 
+		$template.find('.group-arbiter').editable({
+			mode: 'inline',
+			url: '/groups/post',
+			name: 'arbiter',
+			defaultValue: 'Arbiter ?',
+			pk: self.controller.data.id
+		});
 		// Make Group Name editable
 		$template.find('.group-name').editable({
 	    	mode: 'inline',
@@ -379,6 +387,7 @@ function GroupViewController(groupController, onBuild){
 	    	defaultValue: 'Group ?',
 	    	pk: self.controller.data.id
 	    });
+		// Make arbiter editable
 
 		// Make it colapsible
 		var $collapsible = $template.find('.collapsible');
@@ -572,7 +581,9 @@ function GroupViewController(groupController, onBuild){
 	// Update Group container names and properties
 	self.updateGroupContainer = function(){
 		self.root.find('.group-name').editable('setValue', self.controller.data.name);
+		self.root.find('.group-arbiter').editable('setValue', self.controller.data.arbiter);
 	}
+
 
 	// Update the table with current model data
 	self.updateTable = function(){
