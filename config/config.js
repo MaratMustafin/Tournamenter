@@ -26,8 +26,8 @@ var version = package.version
 var password = env.PASSWORD || null
 
 // Database Configs
-var dbUrl = env.DB_URL || null
-var dbAdapter = env.DB_ADAPTER || 'sails-disk'
+var dbUrl = env.DB_URL || 'mongodb://localhost:27017/tournament_kz'
+var dbAdapter = env.DB_ADAPTER || 'sails-mongo'
 var dbFilePath = env.DB_FOLDER || path.join(__dirname, '/../.tmp')
 var dbFileName = '/' + appUid + '.db'
 var dbFilePathIsFile = dbFilePath.endsWith('.db')
